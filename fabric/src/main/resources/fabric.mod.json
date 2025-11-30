@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "boingboingitem",
+  "version": "${version}",
+  "name": "BoingBoing Item",
+  "description": "Items bounce like slimes when dropped on the ground!",
+  "authors": ["BoingBoing"],
+  "contact": {},
+  "license": "MIT",
+  "icon": "",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.boingboing.BoingBoingItemFabric"]
+  },
+  "mixins": [],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}

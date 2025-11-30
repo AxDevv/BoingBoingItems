@@ -1,0 +1,11 @@
+plugins {
+    id 'java'
+}
+
+version = '0.1'
+group = 'com.boingboing'
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+dependencies {
+}

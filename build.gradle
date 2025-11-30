@@ -1,0 +1,46 @@
+subprojects {
+    apply plugin: 'java'
+
+    repositories {
+        mavenCentral()
+        maven { url = 'https://maven.minecraftforge.net/' }
+        maven { url = 'https://maven.neoforged.net/releases' }
+        maven { url = 'https://maven.fabricmc.net/' }
+    }
+
+    tasks.withType(JavaCompile).configureEach {
+        options.encoding = 'UTF-8'
+    }
+}
+
+task collectJars(type: Copy) {
+    dependsOn ':forge:build', ':neoforge:build'
+
+    from("forge/build/libs") {
+        include "*.jar"
+        exclude "*-sources.jar", "*-dev.jar"
+    }
+    from("neoforge/build/libs") {
+        include "*.jar"
+        exclude "*-sources.jar", "*-dev.jar"
+    }
+
+    into "build/output"
+
+    doLast {
+        println ""
+        println "========================================="
+        println "  All JARs collected in build/output/"
+        println "========================================="
+        fileTree("build/output").files.each { file ->
+            println "  - ${file.name}"
+        }
+        println "========================================="
+    }
+}
+
+task buildAll {
+    dependsOn collectJars
+    group = 'build'
+    description = 'Build all loaders and collect JARs'
+}

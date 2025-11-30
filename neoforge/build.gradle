@@ -1,0 +1,46 @@
+plugins {
+    id 'eclipse'
+    id 'idea'
+    id 'maven-publish'
+    id 'net.neoforged.gradle.userdev' version '7.0.+'
+}
+
+version = '0.1'
+group = 'com.boingboing'
+
+base {
+    archivesName = 'boingboingitem-neoforge'
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+runs {
+    client {
+        systemProperty 'forge.logging.markers', 'REGISTRIES'
+        systemProperty 'forge.logging.console.level', 'debug'
+    }
+
+    server {
+        systemProperty 'forge.logging.markers', 'REGISTRIES'
+        systemProperty 'forge.logging.console.level', 'debug'
+    }
+}
+
+dependencies {
+    implementation "net.neoforged:neoforge:21.1.77"
+    implementation project(':common')
+}
+
+jar {
+    manifest {
+        attributes([
+            "Specification-Title": "BoingBoing Item",
+            "Specification-Vendor": "BoingBoing",
+            "Specification-Version": "1",
+            "Implementation-Title": project.name,
+            "Implementation-Version": project.version,
+            "Implementation-Vendor": "BoingBoing"
+        ])
+    }
+    from(project(':common').sourceSets.main.output)
+}
