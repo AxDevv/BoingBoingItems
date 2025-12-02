@@ -26,12 +26,12 @@ public class BounceConfigFabric {
         if (Files.exists(CONFIG_PATH)) {
             try {
                 ConfigData data = GSON.fromJson(Files.readString(CONFIG_PATH), ConfigData.class);
-                bounceFactor = data.bounceFactor;
-                minBounceVelocity = data.minBounceVelocity;
-                horizontalConservation = data.horizontalConservation;
-                impactThreshold = data.impactThreshold;
-                soundVolume = data.soundVolume;
-                particleCount = data.particleCount;
+                bounceFactor = clamp(data.bounceFactor, 0.0, 3.0);
+                minBounceVelocity = clamp(data.minBounceVelocity, 0.01, 0.5);
+                horizontalConservation = clamp(data.horizontalConservation, 0.0, 1.0);
+                impactThreshold = clamp(data.impactThreshold, 0.01, 1.0);
+                soundVolume = clamp(data.soundVolume, 0.0, 1.0);
+                particleCount = clamp(data.particleCount, 1, 50);
                 enableSound = data.enableSound;
                 enableParticles = data.enableParticles;
             } catch (IOException e) {
@@ -40,6 +40,14 @@ public class BounceConfigFabric {
         } else {
             save();
         }
+    }
+
+    private static double clamp(double value, double min, double max) {
+        return Math.max(min, Math.min(max, value));
+    }
+
+    private static int clamp(int value, int min, int max) {
+        return Math.max(min, Math.min(max, value));
     }
 
     public static void save() {

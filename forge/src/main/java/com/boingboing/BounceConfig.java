@@ -22,9 +22,9 @@ public class BounceConfig {
         BUILDER.push("Bounce Physics");
 
         BOUNCE_FACTOR = BUILDER
-            .comment("Vertical bounce factor (0.0 - 1.0)")
-            .comment("Higher value = higher bounce")
-            .defineInRange("bounceFactor", BounceConstants.DEFAULT_BOUNCE_FACTOR, 0.0, 1.0);
+            .comment("Vertical bounce factor (0.0 - 3.0)")
+            .comment("Higher value = higher bounce. Values > 1.0 = super bounce!")
+            .defineInRange("bounceFactor", BounceConstants.DEFAULT_BOUNCE_FACTOR, 0.0, 3.0);
 
         MIN_BOUNCE_VELOCITY = BUILDER
             .comment("Minimum velocity to trigger a bounce")

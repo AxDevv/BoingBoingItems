@@ -1,10 +1,10 @@
 modLoader="javafml"
-loaderVersion="[47,)"
+loaderVersion="[43,)"
 license="MIT"
 
 [[mods]]
 modId="boingboingitem"
-version="1.0.0"
+version="0.2"
 displayName="BoingBoing Item"
 description='''
 Items bounce like slimes when dropped on the ground!
@@ -13,13 +13,13 @@ Items bounce like slimes when dropped on the ground!
 [[dependencies.boingboingitem]]
 modId="forge"
 mandatory=true
-versionRange="[47,)"
+versionRange="[43,)"
 ordering="NONE"
 side="BOTH"
 
 [[dependencies.boingboingitem]]
 modId="minecraft"
 mandatory=true
-versionRange="[1.20.1,1.21)"
+versionRange="[1.20,1.20.5)"
 ordering="NONE"
 side="BOTH"

@@ -14,7 +14,7 @@ subprojects {
 }
 
 task collectJars(type: Copy) {
-    dependsOn ':forge:build', ':neoforge:build'
+    dependsOn ':forge:build', ':neoforge:build', ':fabric:build'
 
     from("forge/build/libs") {
         include "*.jar"
@@ -24,15 +24,19 @@ task collectJars(type: Copy) {
         include "*.jar"
         exclude "*-sources.jar", "*-dev.jar"
     }
+    from("fabric/build/libs") {
+        include "*.jar"
+        exclude "*-sources.jar", "*-dev.jar"
+    }
 
-    into "build/output"
+    into "build/libs"
 
     doLast {
         println ""
         println "========================================="
-        println "  All JARs collected in build/output/"
+        println "  All JARs collected in build/libs/"
         println "========================================="
-        fileTree("build/output").files.each { file ->
+        fileTree("build/libs").files.each { file ->
             println "  - ${file.name}"
         }
         println "========================================="
